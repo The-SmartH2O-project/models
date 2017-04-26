@@ -1,0 +1,9 @@
+#!/bin/sh
+# 
+# Run AnyLogic Experiment
+# 
+DIR_BACKUP_XJAL=$(pwd)
+SCRIPT_DIR_XJAL=$(dirname "$0")
+cd "$SCRIPT_DIR_XJAL"
+java -Djava.security.policy=security.policy sun.applet.AppletViewer "SH2O_D73_SES.html"
+cd "$DIR_BACKUP_XJAL"
