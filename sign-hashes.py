@@ -15,11 +15,11 @@ for sha256sum_file in sha256sum_finder():
     asc_file= sha256sum_file + '.asc'
     print(sha256sum_file)
     stream = open(sha256sum_file, "rb")
-    sign = gpg.sign_file(stream, keyid='9739174C8B57ACA9', output= asc_file)
+    sign = gpg.sign_file(stream, keyid='8B57ACA9', output= asc_file, detach=True)
     stream.close()
     stream = open(asc_file,"rb")
-    verified = gpg.verify_file(stream)
+    verified = gpg.verify_file(stream,sha256sum_file)
     stream.close()
     if not verified:
-        raise ValueError("Signature "+asc_file+" could not be verified!")
+        raise ValueError('Sign file {} could not be verified!\n'.format(asc_file) )
     else: print('Sign file {} has been varified\n'.format(asc_file))
